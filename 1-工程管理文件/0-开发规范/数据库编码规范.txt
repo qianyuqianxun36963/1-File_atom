@@ -1,0 +1,177 @@
+数据库编码规范
+
+1.数据库涉及字符规范
+
+	我们约定：采用26个英文字母（区分大小写）和0－9这十个自然数，加上下划线_组成，共63个字符。不能出现其他字符（注释除外）。
+
+3.数据库表命名规范
+
+	我们约定，表名由前缀和实际名字组成。
+
+	前缀：使用小写字母tb，代表表。实际名字中，一个系统尽量采取同一单词，多个后面加_来连接区分。
+
+	因此，合法的表名类似如下。
+
+	TbMember
+
+	tbMember_Info
+
+	tbForum_Board
+
+	tbBlog_Comment1
+
+	表
+
+	表名如Order/UserAccout
+
+	符合以下规范：
+
+	(1)统一采用单数形式，反对Orders
+
+	(2)首字母大写，多个单词的话，单词首字母大写，反对order/Useraccout/ORDER
+
+	(3)避免中文拼音，反对AgentBaoCi
+
+	(4)避免下划线连接，反对User_Accout（下划线适用Oracle数据库）
+
+	(5)避免名称过长，反对WebsiteInfomationModifyRecord
+
+	(6)多对多关系表，以Mapping结尾，如UserRoleMapping
+
+	(7)避免保留字
+
+4.字段命名规范
+
+	我们约定，字段由表的简称,实际名字组组成。如果此字段关联另外的字段，那么加下划线_连接关联表字段的字段名。
+
+	合法的字段名类似如下。
+
+	UserID_MeID 
+	UserName 
+	UserRegDate
+
+	字段
+
+	字段名如userID/userName/userType
+
+	符合以下规范：
+
+	(1)系统中所有属于内码的字段（仅用于表示唯一性和程序内部用到的标识性字段），名称取为：ID。
+
+    (2)系统中属于是业务范围内的编号的字段，其代表一定的业务信息，这样的字段建议命名为CODE，其数据类型为VARCHAR，该字段需加唯一索引。
+
+	(3)首个字母小写，多个单词的话，单词首字母大写，反对UserID/Userid
+
+	(4)必须有一主键，主键不直接用ID，而是表名+ID，如userID/orderID
+
+	(5)常用的字段name，不直接用name，而是表名+Name，如userName/orderName
+
+	(6)常用的字段desc，不直接用desc，而是表名+Desc，如userDesc/orderDesc
+
+	(7)大写字母前必须包含至少两个小写的字母，反对uID/oID
+
+	(8)避免中文拼音
+
+	(9)避免下划线连接
+
+	(10)避免名称过长
+
+	(11)避免保留字 
+
+4.对象
+
+	(1)存储过程以SP_为前缀
+
+	(2)触发器以TR_为前缀
+
+	(3)函数以FN_为前缀
+
+	(4)主键以PK_为前缀
+
+	(5)索引以IX_为前缀
+
+	(6)前缀后的首字母大写，多个单词的话，单词首字母大写，如SP_CountFee
+
+	(7)所有的关键字的所有字母必须大写，如SELECT userID,username FROM User
+
+5.视图命名规范
+
+	我们约定，字段由前缀和实际名字组成，中间用下划线连接。
+
+	前缀：使用小写字母vi，表示视图。
+
+	因此，合法的视图名类似如下。
+
+	vi_User 
+	vi_UserInfo
+
+6.存储过程命名规范
+
+	我们约定，字段由前缀和实际名字加操作名字组成，中间用下划线连接。
+
+	前缀：使用小写字母sp，表示存储过程。
+
+	操作名字：Insert|Delelte|Update|Caculate|Confirm
+
+	例如：
+
+	sp_User_Insert
+
+本系统建表：
+
+	jsou_common     //通用模块
+
+	jsou_sys        //系统管理
+
+	jsou_reg        //招生管理
+
+	jsou_edumanage  //教务管理
+
+	jsou_subject    //学科管理
+
+	jsou_finance    //财务管理
+
+	jsou_exam       //考务管理
+
+	jsou_roll       //学籍管理
+
+
+本系统字段命名规范
+
+	(1)单词与单词直接用‘_’分割。
+
+	(2)系统中所有属于内码的字段（仅用于表示唯一性和程序内部用到的标识性字段），名称取为：ID。
+
+	(3)必须有一主键，主键不直接用ID，而是表名+ID，如user_ID/order_ID
+
+	(4)常用的字段name，不直接用name，而是表名+Name，如user_Name/orderName
+
+	(5)常用的字段desc，不直接用desc，而是表名+Desc，如user_Desc/orderDesc
+
+常用字段：
+
+	所有ID用UUID,32位。    varchar(32)。
+
+	创建人：  create_by   varchar(32) //记录用户ID。
+
+	创建时间：create_time datatime
+
+	开始时间：start_time  datatime
+
+	结束时间：end_time    datatime
+
+	教学点：teaching_point 
+
+	审查审批： verify
+
+	判断相关的字段：is_ 开头
+
+	户籍所在地：register_address
+
+	家庭详细地址：home_address
+
+	联系地址：contact_address
+
+	smallint： 统一不加位数
+
+

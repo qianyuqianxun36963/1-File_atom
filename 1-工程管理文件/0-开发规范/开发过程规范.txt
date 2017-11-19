@@ -1,0 +1,35 @@
+VO 序列化，用于ajax传送复杂对象参数。
+
+service 如果是插入操作，在插入后，返回插入记录的主键。方便后期服务化！
+
+private，属性声明都放在开头。
+
+controller 层中，可以的话，指定get/post类型。
+
+try catch, 一定要做异常捕获。
+
+js里面的判空，注意‘==’ 与‘===’的使用，var i=0;  i == null (true)/ i === null (false)
+
+常量名称命名： 英文大写，下划线分割。
+
+POJO 变量不要用‘is’开头
+
+数据库的不等于，尽量少用 '!='
+
+
+
+
+
+http://www.mybatis.org/mybatis-3/zh/dynamic-sql.html
+
+http://www.runoob.com/mysql/mysql-tutorial.html
+
+http://www.cnblogs.com/xiaoxi/p/5718894.html
+
+http://www.cnblogs.com/leskang/p/5445698.html
+
+http://www.w3school.com.cn/jquery/
+
+http://jquery.cuishifeng.cn/
+
+http://blog.csdn.net/fhx007/article/details/7902040/

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- ${date}  ${user}-->
+
+<!--
+ * myAreaPlace  //大模块名 如招生：reg
+ * AAA          //模块类名大写
+ * bbb          //模块类名小写
+ * #模块#       //模块中文名
+ * tableName 	//表名
+-->
+
+  <mapper namespace="com.wh.eas.manage.dao.myAreaPlace.AAAMapper" >
+  <!--  DAO 层 接口所在的包 -->
+
+	<!-- 获取#模块#信息列表 -->
+	<select id="queryAAAList" parameterType="com.wh.eas.manage.model.Page" resultType="java.util.Map">
+		SELECT ID AS "bbbId"
+		FROM tableName T
+		WHERE T.HAS_DEL = 0
+			AND TYPE = 1
+		<if test="params.status != null and params.status != ''">
+			AND STATUS = #{params.status}
+		</if>
+	</select>
+	
+	<!-- 获取#模块#总数 -->
+	<select id="queryAAACount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(1)
+			FROM tableName T
+			WHERE T.HAS_DEL = 0
+		AND TYPE = 1
+		<if test="status != null and status != ''">
+			AND STATUS = #{status}
+		</if>
+	</select>
+	
+	<!-- 根据ID查询#模块# -->
+	<select id="queryAAAInfo" resultType="java.util.Map">
+		SELECT ID AS "bbbId"
+		FROM tableName 
+		WHERE T.ID = #{para_Id}
+	</select>
+	
+	<!-- 新增#模块#-->
+	<insert id="addAAA" parameterType="java.util.Map">
+		INSERT tableName (
+		    ID,
+		    CREATE_BY  <!-- 最后一个属性不要有逗号 -->
+        ) VALUES (
+			#{bbbId},
+			#{bbbId}) <!-- 最后一个属性不要有逗号 -->
+	</insert>
+	
+	<!-- 更新#模块# -->
+	<update id="updateAAA" parameterType="java.util.Map">
+		UPDATE tableName
+			SET CODE = #{para_Code}
+			UPDATE_BY = #{bbbId}  <!-- 最后一个属性不要有逗号 -->
+     	WHERE ID = #{para_Id}
+	</update>
+	
+	<!-- 删除#模块#_逻辑删除 -->
+	<update id="deleteAAA_lg" parameterType="java.util.Map">
+		UPDATE tableName
+			SET HAS_DEL = 1
+     	WHERE ID = #{para_Id}
+	</update>
+	
+	<!-- 删除#模块#_物理删除 -->
+	<update id="deleteAAA_wl" parameterType="java.util.Map">
+		DELETE FROM tableName WHERE ID = #{para_Id}
+	</update>
+</mapper>

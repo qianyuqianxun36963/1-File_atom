@@ -1,0 +1,1 @@
+使用方法：下载后解压缩，复制所有部件库文件到 你的安装目录\Axure RP Pro 7.0\DefaultSettings\Libraries 即可。
