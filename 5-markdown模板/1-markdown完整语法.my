@@ -1,0 +1,913 @@
+<h1>markdown 语法大全</h1>
+
+<h2>1. 斜体和粗体</h2>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>*斜体*或_斜体_</code></li>
+	<li><code>**粗体**</code></li>
+	<li><code>***加粗斜体***</code></li>
+	<li><code>~~删除线~~</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ul>
+	<li><em>这是一段斜体</em></li>
+	<li><strong>这是一段粗体</strong></li>
+	<li><strong><em>这是一段加粗斜体</em></strong></li>
+	<li><del>这是一段删除线</del></li>
+</ul>
+
+<hr />
+<h2>2. 分级标题</h2>
+
+<p>第一种写法：</p>
+
+<ol>
+	<li><code>这是一个一级标题</code></li>
+	<li><code>============================</code></li>
+	<li>&nbsp;</li>
+	<li><code>这是一个二级标题</code></li>
+	<li><code>--------------------------------------------------</code></li>
+</ol>
+
+<p>第二种写法：</p>
+
+<ol>
+	<li><code># 一级标题</code></li>
+	<li><code>## 二级标题</code></li>
+	<li><code>### 三级标题</code></li>
+	<li><code>#### 四级标题</code></li>
+	<li><code>##### 五级标题</code></li>
+	<li><code>###### 六级标题</code></li>
+</ol>
+
+<p>由于用了[TOC]标记编辑器会把所有标题写到目录大纲中，在这里写的演示标题也会列进去，所以就不演示了。同学们自己在编辑器中观察，很简单，一级标题字号最大，依级递减。</p>
+
+<hr />
+<h2>3. 超链接</h2>
+
+<p>Markdown 支持两种形式的链接语法： 行内式和参考式两种形式，行内式一般使用较多。</p>
+
+<h3>3.1. 行内式</h3>
+
+<p><strong>语法说明：</strong></p>
+
+<ul>
+	<li>[]里写链接文字，()里写链接地址, ()中的&rdquo;&ldquo;中可以为链接指定title属性，title属性可加可不加。title属性的效果是鼠标悬停在链接上会出现指定的 title文字。[链接文字](链接地址 &ldquo;链接标题&rdquo;)&rsquo;这样的形式。<strong><em>链接地址与链接标题前有一个空格。</em></strong></li>
+</ul>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>欢迎来到[梵居闹市](http://blog.leanote.com/freewalk)</code></li>
+	<li>&nbsp;</li>
+	<li><code>欢迎来到[梵居闹市](http://blog.leanote.com/freewalk &quot;梵居闹市&quot;)</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>欢迎来到<a href="http://blog.leanote.com/freewalk">梵居闹市</a></p>
+
+<p>欢迎来到<a href="http://blog.leanote.com/freewalk" title="梵居闹市">梵居闹市</a></p>
+
+<h3>3.2. 参考式</h3>
+
+<p>参考式超链接一般用在学术论文上面，或者另一种情况，如果某一个链接在文章中多处使用，那么使用引用 的方式创建链接将非常好，它可以让你对链接进行统一的管理。</p>
+
+<p><strong>语法说明：</strong>&nbsp;<br />
+参考式链接分为两部分，文中的写法 [链接文字][链接标记]，在文本的任意位置添加[链接标记]:链接地址 &ldquo;链接标题&rdquo;，<strong><em>链接地址与链接标题前有一个空格。</em></strong></p>
+
+<p>如果链接文字本身可以做为链接标记，你也可以写成[链接文字][]&nbsp;<br />
+[链接文字]：链接地址的形式，见代码的最后一行。</p>
+
+<p><strong>代码：</strong> &nbsp;</p>
+
+<ol>
+	<li><code>我经常去的几个网站[Google][1]、[Leanote][2]以及[自己的博客][3]</code></li>
+	<li><code>[Leanote 笔记][2]是一个不错的[网站][]。</code></li>
+	<li>&nbsp;</li>
+	<li><code>[1]:http://www.google.com &quot;Google&quot;</code></li>
+	<li><code>[2]:http://www.leanote.com &quot;Leanote&quot;</code></li>
+	<li><code>[3]:http://http://blog.leanote.com/freewalk &quot;梵居闹市&quot;</code></li>
+	<li><code>[网站]:http://http://blog.leanote.com/freewalk</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>我经常去的几个网站<a href="http://www.google.com/" title="Google">Google</a>、<a href="http://www.leanote.com/" title="Leanote">Leanote</a>以及<a href="http://http//blog.leanote.com/freewalk" title="梵居闹市">自己的博客</a>&nbsp;<br />
+<a href="http://www.leanote.com/" title="Leanote">Leanote 笔记</a>是一个不错的<a href="http://http//blog.leanote.com/freewalk">网站</a>。</p>
+
+<h3>3.3. 自动链接</h3>
+
+<p><strong>语法说明：</strong>&nbsp;<br />
+Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用&lt;&gt;包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>&lt;http://example.com/&gt;</code></li>
+	<li><code>&lt;address@example.com&gt;</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p><a href="http://example.com/">http://example.com/</a>&nbsp;<br />
+<a href="mailto:address@example.com">address@example.com</a></p>
+
+<hr />
+<h2>4. 锚点</h2>
+
+<p>网页中，锚点其实就是页内超链接，也就是链接本文档内部的某些元素，实现当前页面中的跳转。比如我这里写下一个锚点，点击回到目录，就能跳转到目录。 在目录中点击这一节，就能跳过来。还有下一节的注脚。这些根本上都是用锚点来实现的。</p>
+
+<p>注意：&nbsp;<br />
+1. Markdown Extra 只支持在标题后插入锚点，其它地方无效。&nbsp;<br />
+2. Leanote 编辑器右侧显示效果区域暂时不支持锚点跳转，所以点来点去发现没有跳转不必惊慌，但是你发布成笔记或博文后是支持跳转的。</p>
+
+<p><strong>语法描述：</strong>&nbsp;<br />
+在你准备跳转到的指定标题后插入锚点{#标记}，然后在文档的其它地方写上连接到锚点的链接。</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>## 0. 目录{#index}</code></li>
+	<li>&nbsp;</li>
+	<li><code>跳转到[目录](#index)</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>跳转到<a href="http://blog.leanote.com/post/freewalk/Markdown-%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C#index">目录</a></p>
+
+<hr />
+<h2>5. 列表</h2>
+
+<h3>5.1. 无序列表</h3>
+
+<p>使用 *，+，- 表示无序列表。</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>- 无序列表项 一</code></li>
+	<li><code>- 无序列表项 二</code></li>
+	<li><code>- 无序列表项 三</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ul>
+	<li>无序列表项 一</li>
+	<li>无序列表项 二</li>
+	<li>无序列表项 三</li>
+</ul>
+
+<h3>5.2. 有序列表</h3>
+
+<p>有序列表则使用数字接着一个英文句点。</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>1. 有序列表项 一</code></li>
+	<li><code>2. 有序列表项 二</code></li>
+	<li><code>3. 有序列表项 三</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ol>
+	<li>有序列表项 一</li>
+	<li>有序列表项 二</li>
+	<li>有序列表项 三</li>
+</ol>
+
+<h3>5.3. 定义型列表</h3>
+
+<p><strong>语法说明：</strong></p>
+
+<p>定义型列表由名词和解释组成。一行写上定义，紧跟一行写上解释。解释的写法:紧跟一个缩进(Tab)</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>Markdown</code></li>
+	<li><code>: 轻量级文本标记语言，可以转换成html，pdf等格式（左侧有一个可见的冒号和四个不可见的空格）</code></li>
+	<li>&nbsp;</li>
+	<li><code>代码块 2</code></li>
+	<li><code>: 这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）</code></li>
+	<li>&nbsp;</li>
+	<li><code>代码块（左侧有八个不可见的空格）</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>Markdown</p>
+
+<p>轻量级文本标记语言，可以转换成html，pdf等格式</p>
+
+<p>代码块 2</p>
+
+<p>这是代码块的定义</p>
+
+<ol>
+	<li><code>代码块（左侧有八个不可见的空格）</code></li>
+</ol>
+
+<h3>5.3. 列表缩进</h3>
+
+<p><strong>语法说明：</strong></p>
+
+<p>列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。</p>
+
+<p>要让列表看起来更漂亮，你可以把内容用固定的缩进整理好（显示效果与代码一致）：</p>
+
+<ul>
+	<li>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。&nbsp;<br />
+	那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。&nbsp;<br />
+	软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</li>
+	<li>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。&nbsp;<br />
+	寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。&nbsp;<br />
+	但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！&nbsp;<br />
+	悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</li>
+</ul>
+
+<p>但是如果你懒，那也行：&nbsp;<br />
+<strong>代码：</strong></p>
+
+<ol>
+	<li><code>* 轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。</code></li>
+	<li><code>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 </code></li>
+	<li><code>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！ </code></li>
+	<li><code>* 那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 </code></li>
+	<li><code>寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 </code></li>
+	<li><code>但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ </code></li>
+	<li><code>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ul>
+	<li>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。&nbsp;<br />
+	那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。&nbsp;<br />
+	软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</li>
+	<li>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。&nbsp;<br />
+	寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。&nbsp;<br />
+	但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！&nbsp;<br />
+	悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</li>
+</ul>
+
+<h3>5.4. 包含段落的列表</h3>
+
+<p><strong>语法说明：</strong></p>
+
+<p>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符（显示效果与代码一致）：</p>
+
+<ul>
+	<li>
+	<p>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。&nbsp;<br />
+	那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。&nbsp;<br />
+	软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</p>
+
+	<p>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。&nbsp;<br />
+	寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。&nbsp;<br />
+	但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！</p>
+	</li>
+	<li>
+	<p>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</p>
+	</li>
+</ul>
+
+<p>如果你每行都有缩进，看起来会看好很多，当然，再次地，如果你很懒惰，Markdown 也允许：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>* 轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。</code></li>
+	<li><code>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 </code></li>
+	<li><code>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</code></li>
+	<li>&nbsp;</li>
+	<li><code>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 </code></li>
+	<li><code>寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 </code></li>
+	<li><code>但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ </code></li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li><code>* 悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ul>
+	<li>
+	<p>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。&nbsp;<br />
+	那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。&nbsp;<br />
+	软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</p>
+
+	<p>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。&nbsp;<br />
+	寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。&nbsp;<br />
+	但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！</p>
+	</li>
+	<li>
+	<p>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</p>
+	</li>
+</ul>
+
+<h3>5.5. 包含引用的列表</h3>
+
+<p><strong>语法说明：</strong></p>
+
+<p>如果要在列表项目内放进引用，那 &gt; 就需要缩进：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>* 阅读的方法:</code></li>
+	<li>&nbsp;</li>
+	<li><code>&gt; 打开书本。</code></li>
+	<li><code>&gt; 打开电灯。</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ul>
+	<li>
+	<p>阅读的方法:</p>
+
+	<blockquote>
+	<p>打开书本。&nbsp;<br />
+	打开电灯。</p>
+	</blockquote>
+	</li>
+</ul>
+
+<h3>5.6. 包含代码区块的引用</h3>
+
+<p><strong>语法说明：</strong>&nbsp;<br />
+如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：</p>
+
+<ul>
+	<li>
+	<p>一列表项包含一个列表区块：</p>
+
+	<ol>
+		<li><code>&lt;代码写在这&gt;</code></li>
+	</ol>
+	</li>
+</ul>
+
+<h3>5.7. 一个特殊情况</h3>
+
+<p>在特殊情况下，项目列表很可能会不小心产生，像是下面这样的写法：</p>
+
+<ol>
+	<li><code>1986. What a great season.</code></li>
+</ol>
+
+<p>会显示成：</p>
+
+<ol>
+	<li>What a great season.</li>
+</ol>
+
+<p>换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠：</p>
+
+<ol>
+	<li><code>1986\. What a great season.</code></li>
+</ol>
+
+<p>会显示成：</p>
+
+<p>1986. What a great season.</p>
+
+<hr />
+<h2>6. 引用</h2>
+
+<p><strong>语法说明：</strong></p>
+
+<p>引用需要在被引用的文本前加上&gt;符号。</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>&gt; 这是一个有两段文字的引用,</code></li>
+	<li><code>&gt; 无意义的占行文字1.</code></li>
+	<li><code>&gt; 无意义的占行文字2.</code></li>
+	<li><code>&gt; </code></li>
+	<li><code>&gt; 无意义的占行文字3.</code></li>
+	<li><code>&gt; 无意义的占行文字4.</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<blockquote>
+<p>这是一个有两段文字的引用,&nbsp;<br />
+无意义的占行文字1.&nbsp;<br />
+无意义的占行文字2.</p>
+
+<p>无意义的占行文字3.&nbsp;<br />
+无意义的占行文字4.</p>
+</blockquote>
+
+<p>Markdown 也允许你偷懒只在整个段落的第一行最前面加上 &gt; ：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>&gt; 这是一个有两段文字的引用,</code></li>
+	<li><code>无意义的占行文字1.</code></li>
+	<li><code>无意义的占行文字2.</code></li>
+	<li>&nbsp;</li>
+	<li><code>&gt; 无意义的占行文字3.</code></li>
+	<li><code>无意义的占行文字4.</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<blockquote>
+<p>这是一个有两段文字的引用,&nbsp;<br />
+无意义的占行文字1.&nbsp;<br />
+无意义的占行文字2.</p>
+
+<p>无意义的占行文字3.&nbsp;<br />
+无意义的占行文字4.</p>
+</blockquote>
+
+<h3>6.1. 引用的多层嵌套</h3>
+
+<p>区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &gt; ：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>&gt;&gt;&gt; 请问 Markdwon 怎么用？ - 小白</code></li>
+	<li>&nbsp;</li>
+	<li><code>&gt;&gt; 自己看教程！ - 愤青</code></li>
+	<li>&nbsp;</li>
+	<li><code>&gt; 教程在哪？ - 小白</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>请问 Markdwon 怎么用？ - 小白</p>
+</blockquote>
+
+<p>自己看教程！ - 愤青</p>
+</blockquote>
+
+<p>教程在哪？ - 小白</p>
+</blockquote>
+
+<h3>6.2. 引用其它要素</h3>
+
+<p>引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>&gt; 1. 这是第一行列表项。</code></li>
+	<li><code>&gt; 2. 这是第二行列表项。</code></li>
+	<li><code>&gt; </code></li>
+	<li><code>&gt; 给出一些例子代码：</code></li>
+	<li><code>&gt; </code></li>
+	<li><code>&gt; return shell_exec(&quot;echo $input | $markdown_script&quot;);</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<blockquote>
+<ol>
+	<li>这是第一行列表项。</li>
+	<li>这是第二行列表项。</li>
+</ol>
+
+<p>给出一些例子代码：</p>
+
+<pre>
+&nbsp;</pre>
+
+<ol>
+	<li><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);</code></li>
+</ol>
+</blockquote>
+
+<hr />
+<h2>7. 插入图像</h2>
+
+<p>图片的创建方式与超链接相似，而且和超链接一样也有两种写法，行内式和参考式写法。</p>
+
+<p>语法中图片Alt的意思是如果图片因为某些原因不能显示，就用定义的图片Alt文字来代替图片。 图片Title则和链接中的Title一样，表示鼠标悬停与图片上时出现的文字。 Alt 和 Title 都不是必须的，可以省略，但建议写上。</p>
+
+<h3>7.1. 行内式</h3>
+
+<p><strong>语法说明：</strong>![图片Alt](图片地址 &ldquo;图片Title&rdquo;)</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>美丽花儿： </code></li>
+	<li><code>![美丽花儿](http://ww2.sinaimg.cn/large/56d258bdjw1eugeubg8ujj21kw16odn6.jpg &quot;美丽花儿&quot;)</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>美丽花儿：&nbsp;<br />
+<img alt="美丽花儿" src="http://ww2.sinaimg.cn/large/56d258bdjw1eugeubg8ujj21kw16odn6.jpg" style="height:450px; width:600px" title="美丽花儿" /></p>
+
+<h3>7.2. 参考式</h3>
+
+<p><strong>语法说明：</strong></p>
+
+<p>在文档要插入图片的地方写![图片Alt][标记]</p>
+
+<p>在文档的最后写上[标记]:图片地址 &ldquo;Title&rdquo;</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>美丽花儿：</code></li>
+	<li><code>![美丽花儿][flower]</code></li>
+	<li>&nbsp;</li>
+	<li><code>[flower]:http://ww2.sinaimg.cn/large/56d258bdjw1eugeubg8ujj21kw16odn6.jpg &quot;美丽花儿&quot;</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>美丽花儿：&nbsp;<br />
+<img alt="美丽花儿" src="http://ww2.sinaimg.cn/large/56d258bdjw1eugeubg8ujj21kw16odn6.jpg" style="height:450px; width:600px" title="美丽花儿" /></p>
+
+<hr />
+<h2>8. 内容目录</h2>
+
+<p>在段落中填写&nbsp;<code>[TOC]</code>&nbsp;以显示全文内容的目录结构。</p>
+
+<p>效果参见最上方的目录</p>
+
+<hr />
+<h2>9. 注脚</h2>
+
+<p><strong>语法说明：</strong></p>
+
+<p>在需要添加注脚的文字后加上脚注名字[^注脚名字],称为加注。 然后在文本的任意位置(一般在最后)添加脚注，脚注前必须有对应的脚注名字。</p>
+
+<p>注意：经测试注脚与注脚之间必须空一行，不然会失效。成功后会发现，即使你没有把注脚写在文末，经Markdown转换后，也会自动归类到文章的最后。</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^2], 你可以使用 Leanote[^Le] 编辑器进行书写。</code></li>
+	<li>&nbsp;</li>
+	<li><code>[^1]:Markdown是一种纯文本标记语言</code></li>
+	<li>&nbsp;</li>
+	<li><code>[^2]:HyperText Markup Language 超文本标记语言</code></li>
+	<li>&nbsp;</li>
+	<li><code>[^Le]:开源笔记平台，支持Markdown和笔记直接发为博文</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>使用 Markdown<a href="http://blog.leanote.com/post/freewalk/Markdown-%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C#fn:1" id="fnref:1" title="See footnote">1</a>可以效率的书写文档, 直接转换成 HTML<a href="http://blog.leanote.com/post/freewalk/Markdown-%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C#fn:2" id="fnref:2" title="See footnote">2</a>, 你可以使用 Leanote<a href="http://blog.leanote.com/post/freewalk/Markdown-%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C#fn:le" id="fnref:le" title="See footnote">3</a>&nbsp;编辑器进行书写。</p>
+
+<p><strong>注：脚注自动被搬运到最后面，请到文章末尾查看，并且脚注后方的链接可以直接跳转回到加注的地方。</strong></p>
+
+<hr />
+<h2>10. LaTeX 公式</h2>
+
+<h3>10.1. $ 表示行内公式：</h3>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>质能守恒方程可以用一个很简洁的方程式&nbsp;E=mc2E=mc2&nbsp;来表达。</p>
+
+<h3>10.2 $$ 表示整行公式：</h3>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>$$\sum_{i=1}^n a_i=0$$</code></li>
+	<li>&nbsp;</li>
+	<li><code>$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</code></li>
+	<li>&nbsp;</li>
+	<li><code>$$\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}$$</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>&sum;i=1nai=0&sum;i=1nai=0</p>
+
+<p>f(x1,xx,&hellip;,xn)=x21+x22+⋯+x2nf(x1,xx,&hellip;,xn)=x12+x22+⋯+xn2</p>
+
+<p>&sum;k=0j&minus;1&gamma;&circ;kjzk&sum;k=0j&minus;1&gamma;^kjzk</p>
+
+<p>访问&nbsp;<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax</a>&nbsp;参考更多使用方法。</p>
+
+<hr />
+<h2>11. 流程图</h2>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>flow</code></li>
+	<li><code>st=&gt;start: Start:&gt;https://www.zybuluo.com</code></li>
+	<li><code>io=&gt;inputoutput: verification</code></li>
+	<li><code>op=&gt;operation: Your Operation</code></li>
+	<li><code>cond=&gt;condition: Yes or No?</code></li>
+	<li><code>sub=&gt;subroutine: Your Subroutine</code></li>
+	<li><code>e=&gt;end</code></li>
+	<li>&nbsp;</li>
+	<li><code>st-&gt;io-&gt;op-&gt;cond</code></li>
+	<li><code>cond(yes)-&gt;e</code></li>
+	<li><code>cond(no)-&gt;sub-&gt;io</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>StartverificationYour OperationYes or No?EndYour Subroutineyesno</p>
+
+<hr />
+<p><strong>更多语法参考：<a href="http://adrai.github.io/flowchart.js/">流程图语法参考</a></strong></p>
+
+<hr />
+<h2>12 .表格</h2>
+
+<p><strong>语法说明：</strong></p>
+
+<ol>
+	<li>不管是哪种方式，第一行为表头，第二行分隔表头和主体部分，第三行开始每一行为一个表格行。</li>
+	<li>列于列之间用管道符|隔开。原生方式的表格每一行的两边也要有管道符。</li>
+	<li>第二行还可以为不同的列指定对齐方向。默认为左对齐，在-右边加上:就右对齐。</li>
+</ol>
+
+<p><strong>代码：</strong></p>
+
+<p>简单方式写表格：</p>
+
+<ol>
+	<li><code>学号|姓名|分数</code></li>
+	<li><code>-|-|-</code></li>
+	<li><code>小明|男|75</code></li>
+	<li><code>小红|女|79</code></li>
+	<li><code>小陆|男|92</code></li>
+</ol>
+
+<p>原生方式写表格：</p>
+
+<ol>
+	<li><code>|学号|姓名|分数|</code></li>
+	<li><code>|-|-|-|</code></li>
+	<li><code>|小明|男|75|</code></li>
+	<li><code>|小红|女|79|</code></li>
+	<li><code>|小陆|男|92|</code></li>
+</ol>
+
+<p>为表格第二列指定方向：</p>
+
+<ol>
+	<li><code>产品|价格</code></li>
+	<li><code>-|-:</code></li>
+	<li><code>Leanote 高级账号|60元/年</code></li>
+	<li><code>Leanote 超级账号|120元/年</code></li>
+</ol>
+
+<p><strong>显示效果：</strong>&nbsp;<br />
+简单方式写表格：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>学号</th>
+			<th>姓名</th>
+			<th>分数</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>小明</td>
+			<td>男</td>
+			<td>75</td>
+		</tr>
+		<tr>
+			<td>小红</td>
+			<td>女</td>
+			<td>79</td>
+		</tr>
+		<tr>
+			<td>小陆</td>
+			<td>男</td>
+			<td>92</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>原生方式写表格：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>学号</th>
+			<th>姓名</th>
+			<th>分数</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>小明</td>
+			<td>男</td>
+			<td>75</td>
+		</tr>
+		<tr>
+			<td>小红</td>
+			<td>女</td>
+			<td>79</td>
+		</tr>
+		<tr>
+			<td>小陆</td>
+			<td>男</td>
+			<td>92</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>为表格第二列指定方向：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>产品</th>
+			<th>价格</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Leanote 高级账号</td>
+			<td>60元/年</td>
+		</tr>
+		<tr>
+			<td>Leanote 超级账号</td>
+			<td>120元/年</td>
+		</tr>
+	</tbody>
+</table>
+
+<hr />
+<h2>13. 分隔线</h2>
+
+<p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>* * *</code></li>
+	<li>&nbsp;</li>
+	<li><code>***</code></li>
+	<li>&nbsp;</li>
+	<li><code>*****</code></li>
+	<li>&nbsp;</li>
+	<li><code>- - -</code></li>
+	<li>&nbsp;</li>
+	<li><code>---------------------------------------</code></li>
+</ol>
+
+<p><strong>显示效果都一样：</strong></p>
+
+<hr />
+<hr />
+<h2>14. 代码</h2>
+
+<p>对于程序员来说这个功能是必不可少的，插入程序代码的方式有两种，一种是利用缩进(Tab), 另一种是利用&rdquo;`&rdquo;符号（一般在ESC键下方）包裹代码。</p>
+
+<p><strong>语法说明：</strong></p>
+
+<ol>
+	<li>插入行内代码，即插入一个单词或者一句代码的情况，使用`code`这样的形式插入。</li>
+	<li>插入多行代码，可以使用缩进或者&ldquo;` code &ldquo;`,具体看示例。</li>
+</ol>
+
+<p><strong>注意： 缩进式插入前方必须有空行</strong></p>
+
+<h3>8.1. 行内式</h3>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>C语言里的函数 `scanf()` 怎么使用？</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>C语言里的函数&nbsp;<code>scanf()</code>&nbsp;怎么使用？</p>
+
+<h3>8.2. 缩进式多行代码</h3>
+
+<p>缩进 4 个空格或是 1 个制表符</p>
+
+<p>一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。</p>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>&nbsp; &nbsp;#include &lt;stdio.h&gt;</code></li>
+	<li><code>&nbsp; &nbsp;int main(void)</code></li>
+	<li><code>&nbsp; &nbsp;{</code></li>
+	<li><code>&nbsp; &nbsp; &nbsp; &nbsp; printf(&quot;Hello world\n&quot;);</code></li>
+	<li><code>&nbsp; &nbsp; }</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ol>
+	<li><code>#include &lt;stdio.h&gt;</code></li>
+	<li><code>int main(void)</code></li>
+	<li><code>{</code></li>
+	<li><code>printf(&quot;Hello world\n&quot;);</code></li>
+	<li><code>}</code></li>
+</ol>
+
+<h3>8.3. 用六个`包裹多行代码</h3>
+
+<p><strong>代码：</strong></p>
+
+<ol>
+	<li><code>```</code></li>
+	<li><code>#include &lt;stdio.h&gt;</code></li>
+	<li><code>int main(void)</code></li>
+	<li><code>{</code></li>
+	<li><code>printf(&quot;Hello world\n&quot;);</code></li>
+	<li><code>}</code></li>
+	<li><code>```</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<ol>
+	<li><code>#include &lt;stdio.h&gt;</code></li>
+	<li><code>int main(void)</code></li>
+	<li><code>{</code></li>
+	<li><code>printf(&quot;Hello world\n&quot;);</code></li>
+	<li><code>}</code></li>
+</ol>
+
+<h3>8.4. HTML 原始码</h3>
+
+<p>在代码区块里面， &amp; 、 &lt; 和 &gt; 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，剩下的 Markdown 都会帮你处理，例如：</p>
+
+<p><strong>代码：</strong></p>
+
+<p>第一个例子：</p>
+
+<ol>
+	<li><code>&lt;div class=&quot;footer&quot;&gt;</code></li>
+	<li><code>&copy; 2004 Foo Corporation</code></li>
+	<li><code>&lt;/div&gt;</code></li>
+</ol>
+
+<p>第二个例子：</p>
+
+<ol>
+	<li><code>&lt;table&gt;</code></li>
+	<li><code>&lt;tr&gt;</code></li>
+	<li><code>&lt;th rowspan=&quot;2&quot;&gt;值班人员&lt;/th&gt;</code></li>
+	<li><code>&lt;th&gt;星期一&lt;/th&gt;</code></li>
+	<li><code>&lt;th&gt;星期二&lt;/th&gt;</code></li>
+	<li><code>&lt;th&gt;星期三&lt;/th&gt;</code></li>
+	<li><code>&lt;/tr&gt;</code></li>
+	<li><code>&lt;tr&gt;</code></li>
+	<li><code>&lt;td&gt;李强&lt;/td&gt;</code></li>
+	<li><code>&lt;td&gt;张明&lt;/td&gt;</code></li>
+	<li><code>&lt;td&gt;王平&lt;/td&gt;</code></li>
+	<li><code>&lt;/tr&gt;</code></li>
+	<li><code>&lt;/table&gt;</code></li>
+</ol>
+
+<p><strong>显示效果：</strong></p>
+
+<p>第一个例子：&nbsp;<br />
+&copy; 2004 Foo Corporation&nbsp;</p>
+
+<p>第二个例子：</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th rowspan="2">值班人员</th>
+			<th>星期一</th>
+			<th>星期二</th>
+			<th>星期三</th>
+		</tr>
+		<tr>
+			<td>李强</td>
+			<td>张明</td>
+			<td>王平</td>
+		</tr>
+	</tbody>
+</table>
