@@ -1,4 +1,4 @@
-package com.wh.eas.manage.service.Impl.myAreaPlace;
+﻿package com.wh.eas.manage.service.Impl.myAreaPlace;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +57,8 @@ public class AAAServiceImpl implements IAAAService{
 
 		//获取#模块#列表
 		List<Map<String, Object>> resList = bbbMapper.queryAAAList(page);
-		Integer count = bbbMapper.queryAAACount(paramMap);
+		Integer count = resList.size();
+		//Integer count = bbbMapper.queryAAACount(paramMap); //这里多此一举。
 		dataTableModel.setiTotalDisplayRecords(count);
 		dataTableModel.setiTotalRecords(count);
 		dataTableModel.setsEcho(Integer.valueOf(sEcho));
@@ -85,7 +86,7 @@ public class AAAServiceImpl implements IAAAService{
 	 * @return **    
 	 * @see **
 	 */
-	public void saveAAA(Map<String, Object> paramMap) {
+	public boolean saveAAA(Map<String, Object> paramMap) {
 		paramMap.put("userId", "0-1");//操作人ID
 		String bbbId = (String)paramMap.get("bbbId");
 		if (StringUtils.isEmpty(bbbId)) {
@@ -104,7 +105,7 @@ public class AAAServiceImpl implements IAAAService{
 	 * @return **    
 	 * @see **
 	 */
-	public void deleteAAA(String bbbId) {
+	public boolean deleteAAA(String bbbId) {
 		Map<String, Object> bbbMap = bbbMapper.queryAAAInfo(bbbId);
 		int isUse = (Integer)bbbMap.get("isUse");
 		if (1 == isUse) {

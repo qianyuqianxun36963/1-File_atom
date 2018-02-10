@@ -133,6 +133,42 @@
         });  
     }
 
+页面初始化相关
+
+    $$(document).ready(function(){    
+        initbbbTable();
+        /**
+         * 功能描述：表单验证    
+         */
+        var bbbForm = $$("form[id^='bbbForm']");
+        bbbForm.each(function() {
+            $$(this).validate({
+                rules: {
+                    bbbCode: "required",
+                    bbbName: "required",
+                    status: "required"
+                },
+                submitHandler : function(form) {
+                    var formId = form.id;
+                    var flag = formId.substr(formId.indexOf("_") + 1);
+                    saveAAA(flag);
+                }
+            });
+        });    
+
+        /**
+        * 点击弹出模态窗，然后初始化模态框中的table。这里是通过给按钮加绑定事件完成的，也可以给按钮加绑定js函数。
+        */
+        $('#invoiceModal_func_add').on('shown.bs.modal', function(e) {
+            if (!orderListTable) {
+                initOrderListTable();
+            } else {
+                orderListTable.draw();
+            }
+        });
+
+    });
+
     /**
      * 初始化下拉框
      */
@@ -167,6 +203,8 @@
         }
     }
 
+模态窗相关
+
     /**
      * 编辑模态框
      */
@@ -199,33 +237,36 @@
         });
     }
 
+    // 弹出一录模态框
+    function popUpFirstRecord() {
+        $("#stuModalTittle").text("录入成绩(一录)");
+        $("#enterFlag").text("一录成绩");
+        $("#btnTwo").show();
+        $(".inputList").initInput();
+        debugger;
+        //课程ID和课程编号，隐藏，用于查询等其他可能操作。
+        $("#courseId_value").val(isNullThen($("#courseId_span").html()));
+        
+        //课程代码
+        $("#courseCode_text").text(isNullThen($("#courseCode_span").html()));
+        //课程名称
+        $("#courseName_text").text(isNullThen($("#courseName_span").html()));
+        //考试时间
+        $("#examTime_text").text(isNullThen($("#examTime_span").html()));
+        //应考人数
+        $("#shouldExamPerson_text").text(isNullThen($("#shouldExamPerson_span").html()));
+        //实考人数
+        $("#actualExamPerson_text").text(isNullThen($("#actualExamPerson_span").html()));
+        
+        $("#firstRecordModal").modal('show');
+        
+        if (!order2InvoiceListTable) {
+            initorder2InvoiceListTable();
+        } else {
+            order2InvoiceListTable.draw();
+        }
+    }
 
-
-
-
-    $$(document).ready(function()
-            {    
-        initbbbTable();
-        /**
-         * 
-         * 功能描述：表单验证    
-         */
-        var bbbForm = $$("form[id^='bbbForm']");
-        bbbForm.each(function() {
-            $$(this).validate({
-                rules: {
-                    bbbCode: "required",
-                    bbbName: "required",
-                    status: "required"
-                },
-                submitHandler : function(form) {
-                    var formId = form.id;
-                    var flag = formId.substr(formId.indexOf("_") + 1);
-                    saveAAA(flag);
-                }
-            });
-        });    
-    });
 
 点击按钮触发方法：
 
@@ -300,6 +341,8 @@
         });
     }
 
+生成编辑记录：
+
     var oldCourseMap = {};
 
     /**
@@ -335,3 +378,170 @@
         }
         return editRecord;
     }
+
+导出数据的方法：
+
+// 按钮点击事件。
+/**
+ * 功能描述：将当前查询的所有缴费记录导出到发票
+ */
+function generateInvoice_all() {
+    var params = {};
+    params.paymentStatus = $("#paymentStatus_ordersearch").val();
+    params.hasGenInvoice = $("#hasGenInvoice_ordersearch").val();
+    params.pointId = $("#pointId_ordersearch").val();
+    params.learningBatch = $("#learningBatch_ordersearch").val();
+    params.stuName = $("#stuName_ordersearch").val();
+    params.schoolrollNo = $("#schoolrollNo_ordersearch").val();
+    params.orderStarttime = $("#orderStarttime_ordersearch").val();
+    params.orderEndtime = $("#orderEndtime_ordersearch").val();
+    showConfirmModal("是否确认导出发票！", function() {
+        
+        var datas = JSON.stringify({
+            "flag" : "all",
+            "params" : params
+        });
+        $("#datas_export").val(datas);
+        
+        var url = encodeURI("manage/invoice/addInvoices.do?"
+                + $("#addInvoiceExcelForm").serialize() + "&ACCESSTOKEN="
+                + accessTokenId);
+        $("#exportInvoiceExcelForm").attr('action', url);
+        $("#exportInvoiceExcelForm").attr('target', '');
+        $("#exportInvoiceExcelForm").submit();
+        swal.close();
+        if (swal.close()) {
+            setTimeout(function() {
+                debugger;
+                order2InvoiceListTable.draw();
+                invoiceTable.draw();
+            }, 8000);
+        }
+        
+//      $.ajax({
+//          url : "manage/invoice/addInvoices.do",
+//          dataType : "json",
+//          type : "post",
+//          traditional : true, // 数组格式转换 加上这个就可以了
+//          data : {
+//              "datas" : JSON.stringify({
+//                  "flag" : "all",
+//                  "params" : {
+//                      "params" : params
+//                  }
+//              })
+//          }, // 参数对象
+//          success : function(data) {
+//              if (data.status == "success") {
+//                  showSuccessOrErrorModal(data.msg, "success");
+//                  order2InvoiceListTable.draw(false);
+//              } else if (data.status == "fail") {
+//                  showSuccessOrErrorModal(data.msg, "error");
+//              } else {
+//                  showSuccessOrErrorModal(data.msg, "error");
+//              }
+//          },
+//          error : function(data) {
+//              showSuccessOrErrorModal(data.msg, "error");
+//          }
+//      });
+    });
+}
+
+
+// 按钮点击事件，checkbox 多条选中记录。
+/**
+ * 功能描述：将选中的缴费记录导出到发票
+ */
+function generateInvoice_part() {
+    var params = {};
+    params.paymentStatus = $("#paymentStatus_ordersearch").val();
+    params.hasGenInvoice = $("#hasGenInvoice_ordersearch").val();
+    params.pointId = $("#pointId_ordersearch").val();
+    params.learningBatch = $("#learningBatch_ordersearch").val();
+    params.stuName = $("#stuName_ordersearch").val();
+    params.schoolrollNo = $("#schoolrollNo_ordersearch").val();
+    params.orderStarttime = $("#orderStarttime_ordersearch").val();
+    params.orderEndtime = $("#orderEndtime_ordersearch").val();
+    
+    var rowdatas = [];
+    $(".payCheckbox:checked").each(
+        function() {
+            debugger;
+            var datas = order2InvoiceListTable.row(
+                    this.parentNode.parentNode.parentNode).data();
+            var rowdata = {};
+            rowdata.studyCode = datas.studyCode;
+            rowdata.amount = datas.amount;
+
+            rowdata.pointId = datas.pointId;
+            rowdata.schoolrollId = datas.schoolrollId;
+            rowdatas.push(rowdata);
+    });
+    if (rowdatas.length < 1) {
+        showInfoModal("请选择要生成发票的缴费记录！");
+        return;
+    } else {
+        showConfirmModal("是否确认导出发票！", function() {
+            debugger;
+            var datas = JSON.stringify({
+                "flag" : "part",
+                "rowdatas" : rowdatas,
+                "params" : params
+            });
+            $("#datas_export").val(datas);
+            
+            var url = encodeURI("manage/invoice/addInvoices.do?"
+                    + $("#addInvoiceExcelForm").serialize() + "&ACCESSTOKEN="
+                    + accessTokenId);
+            $("#exportInvoiceExcelForm").attr('action', url);
+            $("#exportInvoiceExcelForm").attr('target', '');
+            $("#exportInvoiceExcelForm").submit();
+            swal.close();
+            if (swal.close()) {
+                setTimeout(function() {
+                    debugger;
+                    order2InvoiceListTable.draw();
+                    invoiceTable.draw();
+                }, 8000);
+            }
+            
+//          $.ajax({
+//              url : "manage/invoice/addInvoices.do",
+//              dataType : "json",
+//              type : "post",
+//              traditional : true, // 数组格式转换 加上这个就可以了
+//              data : {
+//                  "datas" : JSON.stringify({
+//                      "flag" : "part",
+//                      "rowdatas" : rowdatas,
+//                      "params" : params
+//                  })
+//              }, // 参数对象
+//              success : function(data) {
+//                  if (data.status == "success") {
+//                      showSuccessOrErrorModal(data.msg, "success");
+//                      order2InvoiceListTable.draw(false);
+//                  } else if (data.status == "fail") {
+//                      showSuccessOrErrorModal(data.msg, "error");
+//                  } else {
+//                      showSuccessOrErrorModal(data.msg, "error");
+//                  }
+//              },
+//              error : function(data) {
+//                  showSuccessOrErrorModal(data.msg, "error");
+//              }
+//          });
+        });
+    }
+}
+
+// 公共方法，重置模态框查询条件
+function startPageLoading() {
+    $("#stuName_ordersearch").val("");
+    $("#schoolrollNo_ordersearch").val("");
+    $("#learningBatch_ordersearch").val("").selectpicker("refresh");
+    $("#pointId_ordersearch").val("").selectpicker("refresh");
+    $("#orderStarttime_ordersearch").val("");
+    $("#orderEndtime_ordersearch").val("");
+}
