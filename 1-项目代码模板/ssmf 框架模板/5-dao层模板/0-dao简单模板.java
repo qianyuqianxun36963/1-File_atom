@@ -42,26 +42,26 @@ public interface AAAMapper {
 	 * @param paramMap
 	 * @return
 	 */
-	void addAAA(Map<String, Object> paramMap);
+	int addAAA(Map<String, Object> paramMap);
 	
 	/**
 	 * 更新#模块#信息
 	 * @param paramMap
 	 * @return
 	 */
-	void updateAAA(Map<String, Object> paramMap);
+	int updateAAA(Map<String, Object> paramMap);
 
 	/**
 	 * 删除#模块#信息_逻辑删除
 	 * @param bbbId
 	 * @return
 	 */
-	void deleteAAA_lg(@Param("bbbId")String bbbId);
+	int deleteAAA_lg(@Param("bbbId")String bbbId);
 	
 	/**
 	 * 删除#模块#信息_物理删除
 	 * @param bbbId
 	 * @return
 	 */
-	void deleteAAA_wl(@Param("bbbId")String bbbId);
+	int deleteAAA_wl(@Param("bbbId")String bbbId);
 }

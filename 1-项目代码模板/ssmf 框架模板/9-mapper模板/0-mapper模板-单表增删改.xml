@@ -71,4 +71,12 @@
 	<update id="deleteAAA_wl" parameterType="java.util.Map">
 		DELETE FROM tableName WHERE ID = #{para_Id}
 	</update>
+
+	<!-- 删除这个课程批次与课程的关系 -->
+	<delete id="deleteCbatchStudentTypeById">
+		delete from 
+			edumanage_cbatch_student_type
+		where
+			course_batch_id = #{courseBatchId}
+	</delete>
 </mapper>

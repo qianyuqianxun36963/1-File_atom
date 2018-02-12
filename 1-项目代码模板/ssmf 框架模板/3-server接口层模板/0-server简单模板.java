@@ -1,4 +1,4 @@
-package com.wh.eas.manage.service.myAreaPlace;
+﻿package com.wh.eas.manage.service.myAreaPlace;
 
 import java.util.Map;
 
@@ -32,12 +32,12 @@ public interface IAAAService{
 	 * @param paramMap
 	 * @return
 	 */
-	void saveAAA(Map<String, Object> paramMap);
+	boolean saveAAA(Map<String, Object> paramMap);
 
 	/**
 	 * 删除#模块#信息
 	 * @param bbbId
 	 * @return
 	 */
-	void deleteAAA(String bbbId);
+	boolean deleteAAA(String bbbId);
 }
