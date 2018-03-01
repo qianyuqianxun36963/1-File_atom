@@ -106,6 +106,23 @@
                         }
                         $$(nTd).html(content);
                     }
+                }, {    
+                "title" : "录成绩",  
+                "defaultContent" : "",  
+                "class" : "text-center",
+                "width": "25%",
+                "createdCell":function(nTd, sData, oData, iRow, iCol) {
+                    debugger;
+                    var schoolRollId  = oData.schoolRollId;
+                    var violateAction = oData.violateAction;
+                    var violateActionName = oData.violateActionName;
+                    if (violateAction == '' || violateAction == null) {
+                        content = '<input type="text" id="score" onblur="noteScore(\''+schoolRollId+'\',this.value)" />';
+                        stuCounts ++;
+                    }else{
+                        content = violateActionName;
+                    }
+                    $(nTd).html(content);
                 }
             ],
                             
@@ -534,6 +551,30 @@ function generateInvoice_part() {
 //          });
         });
     }
+}
+
+//批量录入成绩,看下表格渲染
+
+var stuCounts = 0;
+var scores = new Map();
+
+function noteScore(schoolRollId,score){
+    scores.set(schoolRollId,score);
+}
+
+function submitForSecondInput(){
+    var params = {};
+    params.examBatch = $("#examBatch_value").val();
+    params.courseId = $("#courseId_value").val();
+    params.courseVersionId = $("#courseVersionId_value").val();
+    
+    var datas = JSON.stringify({
+        "flag" : "0", //提交并需要二录。
+        "params" : params,
+        "scores" : scores
+    });
+    
+    
 }
 
 // 公共方法，重置模态框查询条件
