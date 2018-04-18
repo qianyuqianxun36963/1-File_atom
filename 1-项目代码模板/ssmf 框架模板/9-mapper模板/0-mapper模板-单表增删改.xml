@@ -34,6 +34,17 @@
 			AND STATUS = #{status}
 		</if>
 	</select>
+
+	<!-- 检测是否已经存在 -->
+	<select id="checkExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(1)
+			FROM tableName T
+			WHERE T.HAS_DEL = 0
+		AND TYPE = 1
+		<if test="status != null and status != ''">
+			AND STATUS = #{status}
+		</if>
+	</select>
 	
 	<!-- 根据ID查询#模块# -->
 	<select id="queryAAAInfo" resultType="java.util.Map">
