@@ -1,5 +1,12 @@
 <h1>markdown 语法大全</h1>
 
+<h2>0. 常用技巧</h2>
+
+<p>回车换行：&nbsp; 一段后面加两个空格既是换行。</p>
+
+<p>代码段：&nbsp; &nbsp; &nbsp; 行内代码，单个的 &quot; ` &quot;，代码段，三个的 &quot; `&nbsp;&quot;。 注：这里的特殊符号，是英文状态下，esc下面的那个键！</p>
+
+<hr />
 <h2>1. 斜体和粗体</h2>
 
 <p><strong>代码：</strong></p>
