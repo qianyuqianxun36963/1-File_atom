@@ -13,6 +13,18 @@
   <mapper namespace="com.wh.eas.manage.dao.myAreaPlace.AAAMapper" >
   <!--  DAO 层 接口所在的包 -->
 
+	<!--查询一批记录中的某个字段，如“id”列表。 java中用 List<String> 来接收返回值。-->
+    <select id="queryIdList" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT ID AS "bbbId"
+        FROM
+            tableName T
+        WHERE 
+            eft.has_del = 0
+        <if test="examBatch != null and examBatch !=''">
+            AND eft.exam_batch_id = #{examBatch}
+        </if>
+    </select>
+
 	<!-- 获取#模块#信息列表 -->
 	<select id="queryAAAList" parameterType="com.wh.eas.manage.model.Page" resultType="java.util.Map">
 		SELECT ID AS "bbbId"

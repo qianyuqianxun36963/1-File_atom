@@ -17,6 +17,14 @@ import com.wh.eas.manage.model.Page;
 public interface AAAMapper {
 
 	/**
+	 * 获取#模块#id列表
+	 * @param paramMap
+	 * @return
+	 */
+	List<String> queryIdList(Map<String, Object> paramMap);
+	//String[] queryIdList(Map<String, Object> paramMap); //也可以
+
+	/**
 	 * 获取#模块#信息列表
 	 * @param page
 	 * @return
