@@ -586,3 +586,86 @@ function startPageLoading() {
     $("#orderStarttime_ordersearch").val("");
     $("#orderEndtime_ordersearch").val("");
 }
+
+/**
+<div class="" >
+<!-- 上传 -->
+<div class="col-sm-12 content-edu" id="fRegEvidenceCnt" >
+    <div class="col-sm-2" style="text-align: right;">已上传的证明材料:
+    </div>
+    <br>
+    <ul class="contentbox-edu" id="fRegEvidence" style="overflow:hidden">
+    </ul>
+</div>
+<br>
+<div class="portlet light bordered" style="padding: 12px 20px 15px 20px;">
+     <div class="portlet-body" id="">
+         <div class="row">
+            <div class="col-md-6 modal-box">
+                <div style="text-align: left;flex:4;">上传证明材料：</div>
+                <div style="text-align: left;flex:8;">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                        <a href="javascript:;" class="btn blue btn-xxs " id="" onclick="$('#uploadEvidence').click()">
+                        <i class="fa fa-file"></i> 选择</a>
+                        </span>
+                    </div>
+                    <input style="display:none" type="file" name="" id="uploadEvidence" accept="image/png,image/jpeg,application/pdf">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="progress"  id="fileEvidenceprogress" style="display:none;">
+                    <div id="fileEvidenceprogressOne" class="progress-bar" role="progressbar progress-bar-success" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                            <div id="fileEvidenceprogressTwo">0%</div>
+                    </div>
+                </div></div>
+         </div>
+     </div>
+ </div> <!-- 上传结束 --> 
+</div>
+**/
+
+
+//上传证明材料-前端界面变化与文件上传
+$('#uploadEvidence').on('change', function(e) {
+    var filemaxsize = 1024 * 5; //5M
+    var target = $(e.target);
+    var Size = target[0].files[0].size / 1024;
+    if(Size > filemaxsize) {
+        alert('图片过大，请重新选择!');
+        return false;
+    }
+    var fileName = $("#uploadEvidence").val().match(/[^\\]+\.[^\(]+/i);
+//      $("#uploadEvidenceFileName").val(fileName);
+    var fileInfos = getFileInfos("uploadEvidence","3","file");
+    var resourcepath = fileInfos[0].resourcePath;
+    uploadFiles("uploadEvidence","fileEvidenceprogress","fileEvidenceprogressOne","fileEvidenceprogressTwo",fileInfos)
+    if(!this.files[0].type.match(/image.*/)) {
+         addEvidenceDom("static/images/common/file-avatar.png","fTeacherEvidence",fileName,resourcepath,Size)
+    } else {
+        var reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onload = function(e){
+            addEvidenceDom(this.result,"fTeacherEvidence",fileName,resourcepath,Size);
+        }
+    }
+    //$(target).val("");
+});
+
+//上传证明材料-保存数据到数据库。
+var uploadFiles=[];
+$("#fTeacherEvidence li").each(function(){
+	//获取每个li的文件的文件名路径和
+	var resourcepath=$(this).attr("resourcepath");
+	var fileSize=$(this).attr("fileSize");
+	var realFileName=$(this).children(".txt-edu").children(".pic-title").attr("title").split(".");
+	var fileName=realFileName[0];
+	var fileType=realFileName[1];
+	var files = {
+			resourcepath : resourcepath,
+			fileSize : fileSize,
+			fileName : fileName,
+			fileType : fileType
+	}
+	uploadFiles.push(files)
+});
